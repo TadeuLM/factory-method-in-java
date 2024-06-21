@@ -1,10 +1,9 @@
 package br.com.voll.attribute.core.applications.factories.button;
 
-import br.com.voll.attribute.core.applications.ports.ButtonRepository;
+import br.com.voll.attribute.core.applications.ports.IButtonRepository;
 import br.com.voll.attribute.core.domain.button.Button;
-import br.com.voll.attribute.core.domain.button.Type;
+import br.com.voll.attribute.core.domain.button.Platform;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -12,35 +11,23 @@ import java.util.List;
 @Component
 public class ButtonFactoryImpl implements ButtonFactory {
 
-    @Autowired
-    @Qualifier("windowsButtonRepository")
-    private ButtonRepository buttonWindowsRepository;
+    private final IButtonRepository buttonRepository;
 
     @Autowired
-    @Qualifier("macButtonRepository")
-    private ButtonRepository buttonMacRepository;
-
-    @Override
-    public Button createButton(String label, Type type) {
-        switch (type) {
-            case windows:
-                return buttonWindowsRepository.create(label, type);
-            case mac:
-                return buttonMacRepository.create(label, type);
-            default:
-                throw new IllegalArgumentException("Invalid button type: " + type);
-        }
+    public ButtonFactoryImpl(IButtonRepository buttonRepository) {
+        this.buttonRepository = buttonRepository;
     }
 
     @Override
-    public List<Button> getByType(Type type) {
-        switch (type) {
-            case windows:
-                return buttonWindowsRepository.getByType(Type.windows);
-            case mac:
-                return buttonMacRepository.getByType(Type.mac);
-            default:
-                throw new IllegalArgumentException("Invalid button type: " + type);
-        }
+    public Button create(String label, Platform platform) {
+        Button button = new Button();
+        button.setLabel(label);
+        button.setPlatform(platform);
+        return buttonRepository.save(button);
+    }
+
+    @Override
+    public List<Button> getByPlatform(Platform platform) {
+        return buttonRepository.findByPlatform(platform);
     }
 }

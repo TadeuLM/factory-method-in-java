@@ -2,7 +2,7 @@ package br.com.voll.attribute.core.applications.services;
 
 import br.com.voll.attribute.core.applications.factories.button.ButtonFactory;
 import br.com.voll.attribute.core.domain.button.Button;
-import br.com.voll.attribute.core.domain.button.Type;
+import br.com.voll.attribute.core.domain.button.Platform;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,11 +15,11 @@ public class ButtonService {
         this.buttonFactory = buttonFactory;
     }
 
-    public Button initialize(String label, Type type) {
-        return this.buttonFactory.createButton(label, type);
+    public Button create(String label, Platform platform) {
+        return this.buttonFactory.create(label, platform);
     }
 
-    public List<Button> getByType(Type type) {
-        return this.buttonFactory.getByType(type);
+    public List<Button> getPlatform(Platform platform) {
+        return this.buttonFactory.getByPlatform(platform);
     }
 }
