@@ -4,6 +4,7 @@ import br.com.voll.attribute.core.applications.services.ButtonService;
 import br.com.voll.attribute.core.domain.button.Button;
 import br.com.voll.attribute.core.domain.button.Platform;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,11 +20,13 @@ public class AttributeController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Button create(@Valid @RequestBody Button button) {
         return buttonService.create(button.getLabel(), button.getPlatform());
     }
 
     @GetMapping("/{platform}")
+    @ResponseStatus(HttpStatus.OK)
     public List<Button> index(@PathVariable Platform platform) {
         return buttonService.getPlatform(platform);
     }
