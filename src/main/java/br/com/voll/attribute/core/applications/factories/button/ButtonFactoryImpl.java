@@ -30,4 +30,9 @@ public class ButtonFactoryImpl implements ButtonFactory {
     public List<Button> getByPlatform(Platform platform) {
         return buttonRepository.findByPlatform(platform);
     }
+
+    @Override
+    public List<Button> getAll() {
+        return buttonRepository.findAll();
+    }
 }

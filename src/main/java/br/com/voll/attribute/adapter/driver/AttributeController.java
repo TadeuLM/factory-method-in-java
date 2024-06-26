@@ -30,4 +30,10 @@ public class AttributeController {
     public List<Button> index(@PathVariable Platform platform) {
         return buttonService.getPlatform(platform);
     }
+
+    @GetMapping("/")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Button> findAll() {
+        return buttonService.findAll();
+    }
 }

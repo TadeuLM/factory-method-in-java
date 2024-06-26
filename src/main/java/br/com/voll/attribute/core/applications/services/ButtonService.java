@@ -22,4 +22,8 @@ public class ButtonService {
     public List<Button> getPlatform(Platform platform) {
         return this.buttonFactory.getByPlatform(platform);
     }
+
+    public List<Button> findAll() {
+        return this.buttonFactory.getAll();
+    }
 }

@@ -8,4 +8,5 @@ import java.util.List;
 public interface IButtonRepository {
     Button save(Button button);
     List<Button> findByPlatform(Platform platform);
+    List<Button> findAll();
 }

@@ -2,9 +2,11 @@ package br.com.voll.attribute;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
+@ActiveProfiles("test")
 @SpringBootTest
-class MedApplicationTests {
+class AttributeApplicationTests {
 
 	@Test
 	void contextLoads() {
