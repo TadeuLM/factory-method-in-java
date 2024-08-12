@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 
 @Entity //FIXME: [cleanArch] - não anotar as classes de dominio de negócio com anotações de tecnologia 
-public class Button {
+public class Button {//TODO: [factory] - senti falta de mais de um "tipo" de botão... onde cada um tem seu proprio comportamento...
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
