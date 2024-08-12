@@ -19,7 +19,7 @@ public class ButtonFactoryImpl implements ButtonFactory {
     }
 
     @Override
-    public Button create(String label, Platform platform) {
+    public Button create(String label, Platform platform) {//Sugestão: entrada com 1 parametro "dto" ao invés de 2 ou mais parametros
         Button button = new Button();
         button.setLabel(label);
         button.setPlatform(platform);

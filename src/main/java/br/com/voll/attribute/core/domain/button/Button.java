@@ -7,8 +7,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 
-@Entity
-public class Button {
+@Entity //FIXME: [cleanArch] - não anotar as classes de dominio de negócio com anotações de tecnologia 
+public class Button {//TODO: [factory] - senti falta de mais de um "tipo" de botão... onde cada um tem seu proprio comportamento...
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +21,7 @@ public class Button {
     @NotNull
     private Platform platform;
 
+    //FIXME: [POO] - Encapsulamento: Evitar o uso de "get" e "set"
     public Long getId() {
         return id;
     }
