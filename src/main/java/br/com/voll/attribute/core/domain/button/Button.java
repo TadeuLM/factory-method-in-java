@@ -7,7 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 
-@Entity
+@Entity //FIXME: [cleanArch] - não anotar as classes de dominio de negócio com anotações de tecnologia 
 public class Button {
 
     @Id
@@ -21,6 +21,7 @@ public class Button {
     @NotNull
     private Platform platform;
 
+    //FIXME: [POO] - Encapsulamento: Evitar o uso de "get" e "set"
     public Long getId() {
         return id;
     }
