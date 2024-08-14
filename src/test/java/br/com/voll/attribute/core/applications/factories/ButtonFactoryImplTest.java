@@ -1,7 +1,8 @@
 package br.com.voll.attribute.core.applications.factories;
 
+import br.com.voll.attribute.adapter.driver.dto.ButtonDTO;
 import br.com.voll.attribute.core.applications.factories.button.ButtonFactoryImpl;
-import br.com.voll.attribute.core.applications.ports.IButtonRepository;
+import br.com.voll.attribute.core.applications.ports.ButtonRepository;
 import br.com.voll.attribute.core.domain.button.Button;
 import br.com.voll.attribute.core.domain.button.Platform;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,7 +20,7 @@ import java.util.List;
 public class ButtonFactoryImplTest {
 
     @Mock
-    private IButtonRepository buttonRepository;
+    private ButtonRepository buttonRepository;
 
     private ButtonFactoryImpl buttonFactory;
 
@@ -38,7 +39,11 @@ public class ButtonFactoryImplTest {
 
         when(buttonRepository.save(any(Button.class))).thenReturn(mockButton);
 
-        Button createdButton = buttonFactory.create("Test Button", Platform.windows);
+        ButtonDTO buttonDTO = new ButtonDTO();
+        buttonDTO.setLabel("Test Button");
+        buttonDTO.setPlatform(Platform.windows);
+
+        Button createdButton = buttonFactory.create(buttonDTO);
 
         verify(buttonRepository, times(1)).save(any(Button.class));
 
@@ -89,7 +94,11 @@ public class ButtonFactoryImplTest {
     public void testCreateButton_ExceptionHandling() {
         when(buttonRepository.save(any(Button.class))).thenThrow(RuntimeException.class);
 
-        assertThrows(RuntimeException.class, () -> buttonFactory.create("Test Button", Platform.windows));
+        ButtonDTO buttonDTO = new ButtonDTO();
+        buttonDTO.setLabel("Test Button");
+        buttonDTO.setPlatform(Platform.windows);
+
+        assertThrows(RuntimeException.class, () -> buttonFactory.create(buttonDTO));
 
         verify(buttonRepository, times(1)).save(any(Button.class));
     }

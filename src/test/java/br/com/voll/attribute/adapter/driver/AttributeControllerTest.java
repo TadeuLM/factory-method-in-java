@@ -1,5 +1,6 @@
 package br.com.voll.attribute.adapter.driver;
 
+import br.com.voll.attribute.adapter.driver.dto.ButtonDTO;
 import br.com.voll.attribute.core.applications.services.ButtonService;
 import br.com.voll.attribute.core.domain.button.Button;
 import br.com.voll.attribute.core.domain.button.Platform;
@@ -45,11 +46,15 @@ class AttributeControllerTest {
 
     @Test
     void testCreateButton() throws Exception {
+        ButtonDTO buttonDTO = new ButtonDTO();
+        buttonDTO.setLabel("Test Button");
+        buttonDTO.setPlatform(Platform.windows);
+
         Button button = new Button();
         button.setLabel("Test Button");
         button.setPlatform(Platform.windows);
 
-        when(buttonService.create(anyString(), any(Platform.class))).thenReturn(button);
+        when(buttonService.create(any(ButtonDTO.class))).thenReturn(button);
 
         mockMvc.perform(post("/button")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -58,7 +63,7 @@ class AttributeControllerTest {
                 .andExpect(jsonPath("$.label").value("Test Button"))
                 .andExpect(jsonPath("$.platform").value("windows"));
 
-        verify(buttonService, times(1)).create(anyString(), any(Platform.class));
+        verify(buttonService, times(1)).create(any(ButtonDTO.class));
     }
 
     @Test

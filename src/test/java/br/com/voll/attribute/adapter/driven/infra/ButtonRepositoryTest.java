@@ -1,6 +1,6 @@
 package br.com.voll.attribute.adapter.driven.infra;
 
-import br.com.voll.attribute.core.applications.ports.IButtonRepository;
+import br.com.voll.attribute.core.applications.ports.ButtonRepository;
 import br.com.voll.attribute.core.domain.button.Button;
 import br.com.voll.attribute.core.domain.button.Platform;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +18,7 @@ import static org.mockito.Mockito.when;
 public class ButtonRepositoryTest {
 
     @Mock
-    private IButtonRepository buttonRepository;
+    private ButtonRepository buttonRepository;
 
     @BeforeEach
     void setUp() {

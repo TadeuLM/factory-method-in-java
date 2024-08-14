@@ -38,7 +38,7 @@ mvn test
 
 ## Coverage
 
-O relatório de cobertura de testes pode ser encontrado na seguinte URL: [Link para o relatório de cobertura](http://localhost:63342/factory-method-in-java/target/site/jacoco/index.html)
+O relatório de cobertura de testes pode ser encontrado na seguinte URL: [Link para o relatório de cobertura](http://localhost:63343/factory-method-in-java/attribute/target/site/jacoco/index.html)
 
 
 ## Contribuições

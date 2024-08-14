@@ -1,5 +1,6 @@
 package br.com.voll.attribute.adapter.driver;
 
+import br.com.voll.attribute.adapter.driver.dto.ButtonDTO;
 import br.com.voll.attribute.core.applications.services.ButtonService;
 import br.com.voll.attribute.core.domain.button.Button;
 import br.com.voll.attribute.core.domain.button.Platform;
@@ -21,8 +22,8 @@ public class AttributeController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Button create(@Valid @RequestBody Button button) {
-        return buttonService.create(button.getLabel(), button.getPlatform());
+    public Button create(@Valid @RequestBody ButtonDTO buttonDTO) {
+        return buttonService.create(buttonDTO);
     }
 
     @GetMapping("/{platform}")

@@ -1,5 +1,6 @@
 package br.com.voll.attribute.core.applications.factories;
 
+import br.com.voll.attribute.adapter.driver.dto.ButtonDTO;
 import br.com.voll.attribute.core.applications.factories.button.ButtonFactory;
 import br.com.voll.attribute.core.domain.button.Button;
 import br.com.voll.attribute.core.domain.button.Platform;
@@ -30,14 +31,18 @@ class ButtonFactoryTest {
         Button expectedButton = new Button();
         expectedButton.setLabel("Test Button");
         expectedButton.setPlatform(Platform.windows);
-        when(buttonFactory.create(anyString(), any(Platform.class))).thenReturn(expectedButton);
+        when(buttonFactory.create(any(ButtonDTO.class))).thenReturn(expectedButton);
 
-        Button createdButton = buttonFactory.create("Test Button", Platform.windows);
+        ButtonDTO buttonDTO = new ButtonDTO();
+        buttonDTO.setLabel("Test Button");
+        buttonDTO.setPlatform(Platform.windows);
+
+        Button createdButton = buttonFactory.create(buttonDTO);
 
         assertEquals("Test Button", createdButton.getLabel());
         assertEquals(Platform.windows, createdButton.getPlatform());
 
-        verify(buttonFactory, times(1)).create("Test Button", Platform.windows);
+        verify(buttonFactory, times(1)).create(buttonDTO);
     }
 
     @Test

@@ -1,5 +1,6 @@
 package br.com.voll.attribute.core.applications.services;
 
+import br.com.voll.attribute.adapter.driver.dto.ButtonDTO;
 import br.com.voll.attribute.core.applications.factories.button.ButtonFactory;
 import br.com.voll.attribute.core.domain.button.Button;
 import br.com.voll.attribute.core.domain.button.Platform;
@@ -34,12 +35,16 @@ class ButtonServiceTest {
         button.setLabel("Test Button");
         button.setPlatform(Platform.mac);
 
-        when(buttonFactory.create("label", Platform.mac)).thenReturn(button);
+        ButtonDTO buttonDTO = new ButtonDTO();
+        buttonDTO.setLabel("Test Button");
+        buttonDTO.setPlatform(Platform.mac);
 
-        Button createdButton = buttonService.create("label", Platform.mac);
+        when(buttonFactory.create(buttonDTO)).thenReturn(button);
+
+        Button createdButton = buttonService.create(buttonDTO);
 
         assertEquals(button, createdButton);
-        verify(buttonFactory, times(1)).create("label", Platform.mac);
+        verify(buttonFactory, times(1)).create(buttonDTO);
     }
 
     @Test

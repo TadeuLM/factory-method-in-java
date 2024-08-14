@@ -1,6 +1,7 @@
 package br.com.voll.attribute.core.applications.factories.button;
 
-import br.com.voll.attribute.core.applications.ports.IButtonRepository;
+import br.com.voll.attribute.adapter.driver.dto.ButtonDTO;
+import br.com.voll.attribute.core.applications.ports.ButtonRepository;
 import br.com.voll.attribute.core.domain.button.Button;
 import br.com.voll.attribute.core.domain.button.Platform;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,18 +12,18 @@ import java.util.List;
 @Component
 public class ButtonFactoryImpl implements ButtonFactory {
 
-    private final IButtonRepository buttonRepository;
+    private final ButtonRepository buttonRepository;
 
     @Autowired
-    public ButtonFactoryImpl(IButtonRepository buttonRepository) {
+    public ButtonFactoryImpl(ButtonRepository buttonRepository) {
         this.buttonRepository = buttonRepository;
     }
 
     @Override
-    public Button create(String label, Platform platform) {
+    public Button create(ButtonDTO buttonDTO) {
         Button button = new Button();
-        button.setLabel(label);
-        button.setPlatform(platform);
+        button.setLabel(buttonDTO.getLabel());
+        button.setPlatform(buttonDTO.getPlatform());
         return buttonRepository.save(button);
     }
 

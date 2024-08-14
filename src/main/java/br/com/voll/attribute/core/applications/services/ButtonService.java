@@ -1,5 +1,6 @@
 package br.com.voll.attribute.core.applications.services;
 
+import br.com.voll.attribute.adapter.driver.dto.ButtonDTO;
 import br.com.voll.attribute.core.applications.factories.button.ButtonFactory;
 import br.com.voll.attribute.core.domain.button.Button;
 import br.com.voll.attribute.core.domain.button.Platform;
@@ -15,8 +16,8 @@ public class ButtonService {
         this.buttonFactory = buttonFactory;
     }
 
-    public Button create(String label, Platform platform) {
-        return this.buttonFactory.create(label, platform);
+    public Button create(ButtonDTO buttonDTO) {
+        return this.buttonFactory.create(buttonDTO);
     }
 
     public List<Button> getPlatform(Platform platform) {

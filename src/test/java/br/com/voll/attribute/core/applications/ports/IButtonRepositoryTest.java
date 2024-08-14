@@ -15,7 +15,7 @@ import static org.mockito.Mockito.when;
 public class IButtonRepositoryTest {
 
     @Mock
-    private IButtonRepository buttonRepository;
+    private ButtonRepository buttonRepository;
 
     @BeforeEach
     void setUp() {

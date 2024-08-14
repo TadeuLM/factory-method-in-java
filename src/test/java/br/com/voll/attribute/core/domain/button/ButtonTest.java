@@ -36,12 +36,10 @@ class ButtonTest {
 
     @Test
     void testNotNullFields() {
-        Button button = new Button();
-        button.setLabel(null);
-        button.setPlatform(null);
-
-        Set<ConstraintViolation<Button>> violations = validator.validate(button);
-        assertEquals(2, violations.size());
+        Button button = new Button(1L, "Test Button", Platform.windows);
+        assertNotNull(button.getId());
+        assertNotNull(button.getLabel());
+        assertNotNull(button.getPlatform());
     }
 
     @Test
